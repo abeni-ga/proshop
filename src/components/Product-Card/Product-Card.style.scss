@@ -1,0 +1,17 @@
+.product-card-container{
+    width: 100%;
+    margin: 10px;
+    max-width: 250px;
+    max-height: 400px;
+    min-width: 200px;
+    min-height: 300px;
+    box-shadow: 10px,10px lightblue inset;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    img {
+            width: 100%;
+            height: 200px;
+        }
+}
