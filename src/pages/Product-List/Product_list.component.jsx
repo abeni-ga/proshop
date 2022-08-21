@@ -1,5 +1,5 @@
 import products from "../../products"
-import ProductCard from "../Product-Card/Product-Card.component"
+import ProductCard from "../../components/Product-Card/Product-Card.component"
 import './Product_list.styles.scss';
 const ProductList = ()=>{
     return(
