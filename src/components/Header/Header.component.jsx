@@ -10,11 +10,11 @@ const Header = ()=>{
         </div>
         <div className="buttons">
             <div className="cart">
-            <i class="fa-solid fa-cart-shopping"/>
+            <i className="fa-solid fa-cart-shopping"/>
             <h3>Cart</h3>
             </div>
             <div className="signin">
-            <i class="fa-solid fa-user"/>
+            <i className="fa-solid fa-user"/>
             <h3>Sign In</h3>
             </div>
         </div>

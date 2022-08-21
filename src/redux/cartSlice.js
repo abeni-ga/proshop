@@ -9,11 +9,8 @@ export const cartItemsSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state,payload) => {
-      state.cartItems= state.cartItems.map((cartItem)=>{
-        return cartItem._id===payload.product._id?
-        state.cartItems.push({...payload.product,payload.qty}):
-        cartItem
-      })
+      state.cartItems = payload
+      
     },
     removeFromCart: (state) => {
       
