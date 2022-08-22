@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import {Link} from 'react-router-dom'
 import './ProductDetails.styles.scss';
 import products from '../../products';
 import Rating from '../../components/Rating/Rating.component';
@@ -31,7 +32,7 @@ console.log('not empty and item not exist');
       }
       }else {
         console.log('cart is empty')
-        newCartItems =  [product];
+        newCartItems =  [{...product,qty:qty}];
       }
       console.log(newCartItems);
         dispatch(addToCart([...newCartItems]));
@@ -40,9 +41,11 @@ console.log('not empty and item not exist');
 return(
     <div className="product-details-container-parent">
     <div className='product-details-container'>
+    <Link to='/'>
     <button>
     Go Back
     </button>
+    </Link>
     <div className='product-details'>
     <img src={product.image} alt={product.name}/>
     <div className='product-description'>
