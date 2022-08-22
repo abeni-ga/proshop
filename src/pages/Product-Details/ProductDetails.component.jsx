@@ -9,33 +9,10 @@ import {addToCart} from '../../redux/cartSlice.js';
 const ProductDetails = ()=>{
     const {id} = useParams();
     const {qty,setQty} = useState(1);
-    const cartItems = useSelector((state) => state.cartItems.cartItems);
     const product = products.find((p)=>p._id===id);
     const dispatch = useDispatch();
     const addToCartHandler = ()=>{
-        let newCartItems ;
-        if(cartItems.length>0){
-            console.log("not empty")
-const existItem = cartItems.find((cartItem)=>
-      cartItem._id===product._id);
-      if(existItem){
-        console.log('not empty and item already exist');
-        newCartItems= cartItems.map((cartItem)=>{
-          return cartItem._id===product._id?
-          {...cartItem,qty:cartItem.qty+qty}:cartItem
-        })
-      }else{
-console.log('not empty and item not exist');
-        newCartItems = [
-          ...cartItems,
-          {...product,qty:qty}]
-      }
-      }else {
-        console.log('cart is empty')
-        newCartItems =  [{...product,qty:qty}];
-      }
-      console.log(newCartItems);
-        dispatch(addToCart([...newCartItems]));
+dispatch(addToCart({product:product,qty:qty}))
     }
 
 return(
