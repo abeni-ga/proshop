@@ -4,11 +4,11 @@ import {Link} from 'react-router-dom'
 import './ProductDetails.styles.scss';
 import products from '../../products';
 import Rating from '../../components/Rating/Rating.component';
-import { useSelector,useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {addToCart} from '../../redux/cartSlice.js';
 const ProductDetails = ()=>{
     const {id} = useParams();
-    const {qty,setQty} = useState(1);
+    const [qty,setQty] = useState(1);
     const product = products.find((p)=>p._id===id);
     const dispatch = useDispatch();
     const addToCartHandler = ()=>{
@@ -35,7 +35,7 @@ return(
     <div className='space'><span>Price:</span><span>{product.price}</span></div>
     <div className='space'><span>Price:</span><span>{product.countInStock>=1?"In Stock":"Out of Stock"}</span></div>
     <div className='space'><span>Qty:</span><span>
-    <select onChange={(e)=>{setQty(e.target.value)}}>
+    <select onChange={(e)=>{setQty(Number(e.target.value))}}>
         {
             [...Array(product.countInStock).keys()].map((count)=>(
                 <option value={count+1} key={count}>{count+1}</option>
