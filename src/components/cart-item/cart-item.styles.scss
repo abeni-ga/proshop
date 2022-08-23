@@ -1,24 +1,23 @@
 .cart-item {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 
-    .cart-item-name {
-        max-width: 200px;
+  .cart-item-name {
+    max-width: 200px;
+  }
+
+  .cart-item-detail {
+    width: 50px;
+
+    select {
+      width: 100%;
+      border: none;
     }
+  }
 
-    .cart-item-detail {
-        width: 50px;
-
-        select {
-            width: 100%;
-            border: none;
-        }
-    }
-
-    button {
-        border: none;
-    }
-
+  button {
+    border: none;
+  }
 }

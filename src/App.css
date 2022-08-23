@@ -1,8 +1,9 @@
 .App {
+  width: 100%;
   text-align: center;
-  color:black;
+  color: black;
   position: absolute;
-  top:0;
+  top: 0;
   left: 0;
 }
 
@@ -16,8 +17,6 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
-
 
 .App-link {
   color: #61dafb;

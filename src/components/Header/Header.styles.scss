@@ -1,34 +1,30 @@
-header{
-    background-color: black;
-    width: 100vw;
-    display: flex;
-    justify-content: space-between;
-    color:white
+header {
+  background-color: black;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  color: white;
 }
 
-
-.buttons{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 15vw;
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 15vw;
 }
-.logo{
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
-.cart{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    
+.cart {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 .signin {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
