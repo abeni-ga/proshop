@@ -1,0 +1,18 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  height: 100px;
+  align-items: center;
+  text-align: left;
+  justify-content: flex-start;
+  padding: 5px;
+  margin: 5px;
+  input {
+    margin-top: 10px;
+    width: 70%;
+    height: 100px;
+    border: none;
+    background-color: rgb(220, 223, 222);
+  }
+}

@@ -2,11 +2,6 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  button {
-    margin: 25px;
-    width: 100px;
-    height: auto;
-  }
 }
 
 .product-details-container {
@@ -46,13 +41,6 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-    }
-
-    button {
-      width: 90%;
-      height: 40px;
-      color: white;
-      background-color: black;
     }
   }
 }

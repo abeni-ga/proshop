@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Button from "../../components/button/button.component";
 import "./ProductDetails.styles.scss";
 import products from "../../products";
 import Rating from "../../components/Rating/Rating.component";
@@ -56,7 +57,7 @@ const ProductDetails = () => {
                 </select>
               </span>
             </div>
-            <button onClick={addToCartHandler}>Add To Cart</button>
+            <Button onClick={addToCartHandler}>ADD TO CART</Button>
           </div>
         </div>
       </div>

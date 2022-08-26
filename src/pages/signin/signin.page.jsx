@@ -1,5 +1,6 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { Link } from "react-router-dom";
 import Input from "../../components/input/input.component";
 import Button from "../../components/button/button.component";
 
@@ -21,10 +22,24 @@ const SignIn = () => {
       }}
     >
       {(formik) => (
-        <Form>
-          <Input label="Email" name="email" type="text" />
-          <Input label="Password" name="password" type="password" />
-          <Button type="submit">Submit</Button>
+        <Form className="login-form">
+          <Input
+            label="Email Address"
+            name="email"
+            type="text"
+            placeholder="Enter Email"
+          />
+          <Input
+            label="Password"
+            name="password"
+            type="password"
+            placeholder="Enter Password"
+          />
+          <Button type="submit">Sign In</Button>
+          <div className="regiter-text">
+            <span>New Customer?</span>
+            <Link to="/signup">Register</Link>
+          </div>
         </Form>
       )}
     </Formik>
