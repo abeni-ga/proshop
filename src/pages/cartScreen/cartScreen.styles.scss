@@ -1,4 +1,22 @@
-.cart-items {
-  width: 55%;
-  margin: 50px;
+.cart-screen-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  .cart-screen {
+    width: 90%;
+    display: flex;
+    align-items: space-between;
+    flex-wrap: wrap;
+
+    .cart {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .cart-items {
+    }
+  }
 }

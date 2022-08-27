@@ -1,20 +1,51 @@
 .cart-item {
+  text-align: start;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-
+  gap: 30px;
+  align-items: flex-start;
+  position: relative;
+  .cart-item-img-color {
+    width: 100px;
+    height: 80px;
+    border-radius: 5px;
+    background-color: rgba(73, 70, 70, 0.25);
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    line-height: 16px;
+  }
+  img {
+    height: 80px;
+    width: 100px;
+    border-radius: 5px;
+  }
   .cart-item-name {
+    font: bold 16px "Lato";
+    padding: 10px 0px;
     max-width: 200px;
+    min-width: min-content;
+  }
+  .cart-item-price {
+    font: bold 16px "Lato";
+    padding: 10px 0px;
   }
 
-  .cart-item-detail {
-    width: 50px;
-
+  .cart-item-qty {
+    padding-top: 10px;
+    width: 70px;
+    height: 50px;
     select {
+      text-align: center;
       width: 100%;
+      height: 100%;
       border: none;
+      background-color: #ced4da;
     }
+  }
+  .cart-item-remove {
+    padding-top: 20px;
+    padding-right: 20px;
   }
 
   button {

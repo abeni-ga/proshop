@@ -20,44 +20,51 @@ const ProductDetails = () => {
     <div className="product-details-container-parent">
       <div className="product-details-container">
         <Link to="/">
-          <button>Go Back</button>
+          <h4>Go Back</h4>
         </Link>
         <div className="product-details">
+          <div className="detail-img-color"></div>
           <img src={product.image} alt={product.name} />
           <div className="product-description">
             <h1>{product.name}</h1>
-            <Rating value={product.rating} />
+            <Rating value={product.rating} num={product.numReviews} />
             <h3>price: ${product.price}</h3>
-            <p>{product.description}</p>
+            <p>Description: {product.description}</p>
           </div>
           <div className="product-status">
-            <div className="space">
-              <span>Price:</span>
-              <span>{product.price}</span>
+            <span className="status-grid-item-left">Price:</span>
+            <span className="status-grid-item-right">${product.price}</span>
+            <span className="status-grid-item-left">Status:</span>
+            <span className="status-grid-item-right">
+              {product.countInStock >= 1 ? "In Stock" : "Out of Stock"}
+            </span>
+
+            {product.countInStock > 0 ? (
+              <>
+                <span className="status-grid-item-left">Qty:</span>
+                <span className="status-grid-item-right">
+                  <select
+                    onChange={(e) => {
+                      setQty(Number(e.target.value));
+                    }}
+                  >
+                    {[...Array(product.countInStock).keys()].map((count) => (
+                      <option value={count + 1} key={count}>
+                        {count + 1}
+                      </option>
+                    ))}
+                  </select>
+                </span>
+              </>
+            ) : null}
+            <div className="button-cover">
+              <Button
+                onClick={addToCartHandler}
+                disabled={product.countInStock <= 0}
+              >
+                ADD TO CART
+              </Button>
             </div>
-            <div className="space">
-              <span>Price:</span>
-              <span>
-                {product.countInStock >= 1 ? "In Stock" : "Out of Stock"}
-              </span>
-            </div>
-            <div className="space">
-              <span>Qty:</span>
-              <span>
-                <select
-                  onChange={(e) => {
-                    setQty(Number(e.target.value));
-                  }}
-                >
-                  {[...Array(product.countInStock).keys()].map((count) => (
-                    <option value={count + 1} key={count}>
-                      {count + 1}
-                    </option>
-                  ))}
-                </select>
-              </span>
-            </div>
-            <Button onClick={addToCartHandler}>ADD TO CART</Button>
           </div>
         </div>
       </div>

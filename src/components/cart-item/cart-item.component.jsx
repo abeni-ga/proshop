@@ -5,15 +5,11 @@ const CartItem = ({ product }) => {
   const dispatch = useDispatch();
   return (
     <div className="cart-item">
-      <img
-        src={product.image}
-        alt={product.name}
-        height="100px"
-        width="100px"
-      />
+      <div className="cart-item-img-color"></div>
+      <img src={product.image} alt={product.name} />
       <span className="cart-item-name">{product.name}</span>
-      <span>${product.price}</span>
-      <span className="cart-item-detail">
+      <span className="cart-item-price">${product.price}</span>
+      <span className="cart-item-qty">
         <select
           onChange={(e) => {
             dispatch(editQty({ id: product._id, qty: Number(e.target.value) }));
@@ -27,7 +23,7 @@ const CartItem = ({ product }) => {
           ))}
         </select>
       </span>
-      <span>
+      <span className="cart-item-remove">
         <button
           onClick={() => {
             dispatch(removeFromCart(product._id));

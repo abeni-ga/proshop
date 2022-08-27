@@ -14,13 +14,19 @@ const CartScreen = () => {
     0
   );
   return (
-    <div className="cart">
-      <div className="cart-items">
-        {cartItems.map((cartItem, index) => {
-          return <CartItem key={index} product={cartItem} />;
-        })}
+    <div className="cart-screen-container">
+      <div className="cart-screen">
+        <div className="cart">
+          <div className="cart-items">
+            {cartItems.map((cartItem, index) => {
+              return <CartItem key={index} product={cartItem} />;
+            })}
+          </div>
+          {totalQty > 0 && (
+            <Subtotal totalQty={totalQty} totalPrice={totalPrice} />
+          )}
+        </div>
       </div>
-      {totalQty > 0 && <Subtotal totalQty={totalQty} totalPrice={totalPrice} />}
     </div>
   );
 };
