@@ -10,10 +10,15 @@ const ProductCard = ({ product }) => {
       to={`/product/${product._id}`}
     >
       <div className="product-card-container">
-        <img src={product.image} alt={product.name} />
-        <h2>{product.name}</h2>
-        <Rating value={product.rating} />
-        <h4> from {product.numReviews} Reviews </h4>
+        <div className="img-box">
+          <img src={product.image} alt={product.name} />
+          <div className="img-color"></div>
+        </div>
+        <div className="product-text">
+          <h3>{product.name}</h3>
+          <Rating value={product.rating} num={product.numReviews} />
+          <h2>${product.price}</h2>
+        </div>
       </div>
     </Link>
   );

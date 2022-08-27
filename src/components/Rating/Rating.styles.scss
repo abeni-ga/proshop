@@ -1,3 +1,15 @@
-.star {
-  color: #ffcd3c;
+.rating-container {
+  text-align: start;
+  height: 30px;
+  width: 100%;
+
+  .star {
+    color: #ffe066;
+  }
+
+  h4 {
+    color: #495057;
+    display: inline-block;
+    font: bold 12px "Lato";
+  }
 }

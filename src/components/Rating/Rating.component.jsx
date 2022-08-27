@@ -1,7 +1,7 @@
 import "./Rating.styles.scss";
-const Rating = ({ value }) => {
+const Rating = ({ value, num }) => {
   return (
-    <div>
+    <div className="rating-container">
       {[...Array(5)].map((star, index) => {
         return (
           <span key={index}>
@@ -17,6 +17,7 @@ const Rating = ({ value }) => {
           </span>
         );
       })}
+      <h4> from {num} Reviews </h4>
     </div>
   );
 };
