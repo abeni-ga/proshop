@@ -18,13 +18,18 @@ const CartScreen = () => {
       <div className="cart-screen">
         <div className="cart">
           <div className="cart-items">
-            {cartItems.map((cartItem, index) => {
-              return <CartItem key={index} product={cartItem} />;
-            })}
+            <h1>SHOPPING CART</h1>
+            {cartItems.length <= 0 ? (
+              <h3>Your cart is empty!</h3>
+            ) : (
+              cartItems.map((cartItem, index) => {
+                return <CartItem key={index} product={cartItem} />;
+              })
+            )}
           </div>
-          {totalQty > 0 && (
+          <div className="subtotal-flex">
             <Subtotal totalQty={totalQty} totalPrice={totalPrice} />
-          )}
+          </div>
         </div>
       </div>
     </div>

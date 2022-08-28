@@ -1,0 +1,32 @@
+.signup-form-container {
+  text-align: center;
+  color: #495057;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  h1 {
+    width: 60%;
+    text-align: start;
+    padding: 20px 0px;
+    letter-spacing: 0.2rem;
+  }
+  .signup-form {
+    display: flex;
+    width: 60%;
+    height: 90vh;
+    flex-direction: column;
+    align-items: start;
+    justify-items: center;
+    button {
+    }
+    a:-webkit-any-link {
+      text-decoration: none;
+      color: #495057;
+      font: bold 16px "Lato";
+      font-weight: 700;
+    }
+  }
+}

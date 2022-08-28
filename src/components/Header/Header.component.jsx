@@ -25,8 +25,19 @@ const Header = () => {
           </Link>
         </div>
         <div className="signin">
-          <i className="fa-solid fa-user" />
-          <h3>Sign In</h3>
+          <Link
+            to="/signin"
+            style={{
+              textDecoration: "none",
+              color: "white",
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <i className="fa-solid fa-user" />
+            <h3>Sign In</h3>
+          </Link>
         </div>
       </div>
     </header>

@@ -4,10 +4,13 @@ import "./Product_list.styles.scss";
 const ProductList = () => {
   return (
     <div className="product-list-container">
-      <div className="product-list">
-        {products.map((product, index) => {
-          return <ProductCard product={product} key={index} />;
-        })}
+      <div className="product-list-screen">
+        <h1>LATEST PRODUCTS</h1>
+        <div className="product-list">
+          {products.map((product, index) => {
+            return <ProductCard product={product} key={index} />;
+          })}
+        </div>
       </div>
     </div>
   );
