@@ -1,12 +1,27 @@
 import * as React from "react";
+import { useEffect } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { SIGN_UP } from "../../queries/signUp.mutation";
 import Input from "../../components/input/input.component";
 import Button from "../../components/button/button.component";
 import { Link } from "react-router-dom";
 import "./signup.styles.scss";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const [signUp, { data, loading, error }] = useMutation(SIGN_UP);
+
+  useEffect(() => {
+    if (data) {
+      console.log(data);
+      localStorage.setItem("User", JSON.stringify(data.signUp));
+      localStorage.setItem("Token", data.signUp?.token);
+      navigate("/");
+    }
+  }, [data, navigate]);
   return (
     <div className="signup-form-container">
       <h1>SIGN UP</h1>
@@ -34,8 +49,17 @@ const SignUp = () => {
             .required("Required")
             .oneOf([Yup.ref("password"), null], "Passwords must match"),
         })}
-        onSubmit={(values, { setSubmitting }) => {
-          alert(JSON.stringify(values, null, 2));
+        onSubmit={async (values, { setSubmitting }) => {
+          await signUp({
+            variables: {
+              userInput: {
+                name: values.name,
+                role: "Patron",
+                email: values.email,
+                password: values.password,
+              },
+            },
+          });
         }}
       >
         {(formik) => (
