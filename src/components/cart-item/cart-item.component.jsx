@@ -1,3 +1,4 @@
+import * as React from "react";
 import { useDispatch } from "react-redux";
 import { editQty, removeFromCart } from "../../redux/cartSlice";
 import "./cart-item.styles.scss";

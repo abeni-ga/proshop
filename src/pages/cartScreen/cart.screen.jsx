@@ -1,3 +1,4 @@
+import * as React from "react";
 import "./cartScreen.styles.scss";
 import CartItem from "../../components/cart-item/cart-item.component";
 import { useSelector } from "react-redux";

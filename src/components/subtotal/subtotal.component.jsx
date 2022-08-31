@@ -1,3 +1,4 @@
+import * as React from "react";
 import "./subtotal.styles.scss";
 import Button from "../button/button.component";
 const Subtotal = ({ totalQty, totalPrice }) => {

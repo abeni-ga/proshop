@@ -1,3 +1,4 @@
+import * as React from "react";
 import products from "../../products";
 import ProductCard from "../../components/Product-Card/Product-Card.component";
 import "./Product_list.styles.scss";

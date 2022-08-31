@@ -1,3 +1,4 @@
+import * as React from "react";
 import "./button.styles.scss";
 
 const Button = ({ children, ...otherProps }) => {

@@ -1,3 +1,4 @@
+import * as React from "react";
 import "./Rating.styles.scss";
 const Rating = ({ value, num }) => {
   return (
