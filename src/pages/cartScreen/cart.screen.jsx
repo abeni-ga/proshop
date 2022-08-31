@@ -20,7 +20,8 @@ const CartScreen = () => {
   //   0
   // );
   useEffect(() => {
-    if (data) {
+    if (loading) {
+    } else if (data.getCart) {
       console.log(data);
       setCartItems(data.getCart.order_items);
     } else if (error) {
