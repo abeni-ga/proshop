@@ -7,10 +7,11 @@ import "./ProductDetails.styles.scss";
 import { GET_PRODUCT } from "../../queries/getProduct.Query";
 import { ADD_TO_CART } from "../../queries/addToCart.mutation";
 import Rating from "../../components/Rating/Rating.component";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../redux/cartSlice.js";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, editQty } from "../../redux/cartSlice.js";
 import { useQuery, useMutation } from "@apollo/client";
 const ProductDetails = () => {
+  const cartItemsRedux = useSelector((state) => state.cartItems.cartItems);
   const { id } = useParams();
   const query = useQuery(GET_PRODUCT, {
     variables: {
@@ -22,22 +23,53 @@ const ProductDetails = () => {
   const [product, setProduct] = useState({ review: [] });
   const dispatch = useDispatch();
   const addToCartHandler = async () => {
-    console.log(product._id, product.quantity);
-    await addToCartMut({
-      variables: {
-        cartInput: [
-          {
-            product: product._id,
-            quantity: product.quantity,
-          },
-        ],
-      },
-    });
-    dispatch(addToCart({ product: product, qty: qty }));
+    // await addToCartMut({
+    //   variables: {
+    //     cartInput: [
+    //       {
+    //         product: product._id,
+    //         quantity: product.ordered_quantity,
+    //       },
+    //     ],
+    //   },
+    // });
+    let newCartItems;
+    if (cartItemsRedux.length > 0) {
+      console.log("1");
+      const existItem = cartItemsRedux.find(
+        (cartItem) => cartItem._id === product._id
+      );
+      if (existItem) {
+        console.log("exist");
+        newCartItems = cartItemsRedux.map((cartItem) => {
+          // console.log(cartItem.ordered_quantity + qty);
+          return cartItem._id === product._id
+            ? {
+                ...cartItem,
+                ordered_quantity: Number(cartItem.ordered_quantity) + qty,
+              }
+            : cartItem;
+        });
+      } else {
+        console.log("new");
+        newCartItems = [
+          ...cartItemsRedux,
+          { ...product, ordered_quantity: qty },
+        ];
+      }
+    } else {
+      console.log("empty");
+      newCartItems = [
+        {
+          ...product,
+          qty: qty,
+        },
+      ];
+    }
+
+    dispatch(addToCart(newCartItems));
+    localStorage.setItem("cartItems", JSON.stringify(newCartItems));
   };
-  useEffect(() => {
-    console.log(data);
-  }, [data, error]);
   useEffect(() => {
     const getData = async () => {
       await setProduct(query.data.getProduct);
@@ -77,13 +109,14 @@ const ProductDetails = () => {
               {product.quantity >= 1 ? "In Stock" : "Out of Stock"}
             </span>
 
-            {product.countInStock > 0 ? (
+            {product.quantity > 0 ? (
               <>
                 <span className="status-grid-item-left">Qty:</span>
                 <span className="status-grid-item-right">
                   <select
                     onChange={(e) => {
                       setQty(Number(e.target.value));
+                      dispatch(editQty(qty));
                     }}
                   >
                     {[...Array(product.quantity).keys()].map((count) => (
@@ -98,7 +131,7 @@ const ProductDetails = () => {
             <div className="button-cover">
               <Button
                 onClick={addToCartHandler}
-                disabled={product.countInStock <= 0}
+                disabled={product.quantity <= 0}
               >
                 ADD TO CART
               </Button>

@@ -14,16 +14,16 @@ import "./signin.styles.scss";
 const SignIn = () => {
   const navigate = useNavigate();
   const [logIn, { data, loading, error }] = useMutation(LOG_IN);
-
   useEffect(() => {
     if (data) {
       console.log(data);
+      // console.log("token:" + data.logIn.token);
       localStorage.setItem("User", JSON.stringify(data.logIn));
       localStorage.setItem("Token", data.logIn?.token);
+      // console.log(data.logIn.token === localStorage.getItem("Token"));
       navigate("/");
     }
   }, [data, navigate]);
-
   return (
     <div className="signin-form-container">
       <h1>SIGN IN</h1>

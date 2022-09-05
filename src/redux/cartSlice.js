@@ -1,38 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const cartItems = JSON.parse(localStorage.getItem("cartItems"));
+
 const initialState = {
-  cartItems: [],
+  cartItems: cartItems ? cartItems : [],
 };
 
 export const cartItemsSlice = createSlice({
   name: "cartItems",
   initialState,
   reducers: {
+    listCartItems: (state, action) => {
+      state.cartItems = action.payload;
+    },
     addToCart: (state, action) => {
-      if (state.cartItems.length > 0) {
-        const existItem = state.cartItems.find(
-          (cartItem) => cartItem._id === action.payload.product._id
-        );
-        if (existItem) {
-          state.cartItems = state.cartItems.map((cartItem) => {
-            return cartItem._id === action.payload.product._id
-              ? { ...cartItem, qty: cartItem.qty + action.payload.qty }
-              : cartItem;
-          });
-        } else {
-          state.cartItems = [
-            ...state.cartItems,
-            { ...action.payload.product, qty: action.payload.qty },
-          ];
-        }
-      } else {
-        state.cartItems = [
-          {
-            ...action.payload.product,
-            qty: action.payload.qty,
-          },
-        ];
-      }
+      state.cartItems = action.payload;
     },
     removeFromCart: (state, action) => {
       state.cartItems = state.cartItems.filter(
@@ -42,7 +24,7 @@ export const cartItemsSlice = createSlice({
     editQty: (state, action) => {
       state.cartItems = state.cartItems.map((cartItem) => {
         if (cartItem._id === action.payload.id) {
-          return { ...cartItem, qty: action.payload.qty };
+          return { ...cartItem, ordered_quantity: action.payload.qty };
         } else {
           return cartItem;
         }
@@ -51,6 +33,7 @@ export const cartItemsSlice = createSlice({
   },
 });
 
-export const { addToCart, removeFromCart, editQty } = cartItemsSlice.actions;
+export const { listCartItems, addToCart, removeFromCart, editQty } =
+  cartItemsSlice.actions;
 
 export default cartItemsSlice.reducer;

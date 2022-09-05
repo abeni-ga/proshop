@@ -1,27 +1,37 @@
-import * as React from "react";
+import react, { useEffect, useState } from "react";
+import { useMutation } from "@apollo/client";
 import { useDispatch } from "react-redux";
+import { removeFromCartQuery } from "../../queries/removeFromCart.mutation";
 import { editQty, removeFromCart } from "../../redux/cartSlice";
 import "./cart-item.styles.scss";
 const CartItem = ({ product }) => {
+  const [qty, setQty] = useState(product.ordered_quantity);
+  console.log(product.ordered_quantity);
+  console.log(qty);
+  const [removeFromCartFun, { loading, error, data }] =
+    useMutation(removeFromCartQuery);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   return (
     <div className="cart-item">
       <div className="cart-item-img-color"></div>
-      <img src={product.product.product_image[0]} alt={product.product.name} />
-      <span className="cart-item-name">{product.product.name}</span>
-      <span className="cart-item-price">${product.product.price}</span>
+      <img src={product.product_image[0]} alt={product.name} />
+      <span className="cart-item-name">{product.name}</span>
+      <span className="cart-item-price">${product.price}</span>
       <span className="cart-item-qty">
         <select
-          onChange={(e) => {
-            console.log(product.product._id);
-            dispatch(
-              editQty({ id: product.product._id, qty: Number(e.target.value) })
-            );
+          value={Number(qty)}
+          onChange={async (e) => {
+            setQty(Number(e.target.value));
+            // console.log(qty);
+            dispatch(editQty({ id: product._id, qty: Number(e.target.value) }));
           }}
-          value={product.quantity}
         >
-          {[...Array(product.product.quantity).keys()].map((count) => (
+          {[...Array(product.quantity).keys()].map((count) => (
             <option value={count + 1} key={count}>
               {count + 1}
             </option>
@@ -32,7 +42,8 @@ const CartItem = ({ product }) => {
         <button
           onClick={() => {
             console.log("clicked");
-            dispatch(removeFromCart(product.product._id));
+            removeFromCartFun({ variables: { id: product._id } });
+            dispatch(removeFromCart(product._id));
           }}
         >
           <i className="fa-solid fa-trash"></i>
